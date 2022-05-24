@@ -3,6 +3,7 @@ phases:
   install:
     runtime-versions:
       docker: 18
+      java: corretto11
   pre_build:
     commands:
     - echo Logging in to Amazon ECR...
@@ -13,9 +14,7 @@ phases:
     commands:
     - echo Build started on `date`
     - echo Building Java
-    - cd ProcessPension-Microservice
-    - mvn compile
-    - mvn package -DskipTests
+    - mvn clean
     - echo Building the docker image..
     - docker build -t pms-penstion-pro-rep .
     - docker tag pms-penstion-pro-rep:latest 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-penstion-pro-rep:latest
@@ -25,7 +24,7 @@ phases:
     - echo Pushing docker image
     - docker push 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-penstion-pro-rep:latest
     - echo Writting definition file
-    - printf '[{"name":"PensionManagementPortal","imageUri":"%s"}]'  156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-penstion-pro-rep:latest > imagedefinitions.json
+    - printf '[{"name":"ProcessPension","imageUri":"%s"}]' 156962844638.dkr.ecr.us-east-1.amazonaws.com/pms-penstion-pro-rep:latest > imagedefinitions.json
 artifacts:
   files:
-  - ProcessPension-Microservice/imagedefinitions.json
+  - ProcessPension/imagedefinitions.json
