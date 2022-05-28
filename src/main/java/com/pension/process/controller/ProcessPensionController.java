@@ -1,11 +1,13 @@
 package com.pension.process.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pension.process.exception.AadharNumberNotFound;
@@ -65,6 +67,16 @@ public class ProcessPensionController {
 		}
 		
 		
+	}
+	
+	@RequestMapping(value = "/health",method = RequestMethod.GET)
+	public ResponseEntity<?> health() throws Exception {
+	    try {
+	        return ResponseEntity.status(200).body("Ok");
+	    } catch (Exception e) {
+	        return (ResponseEntity<?>) ResponseEntity.status(null);
+	        		//internalServerError().body(e.getMessage());
+	    }
 	}
 	
 
