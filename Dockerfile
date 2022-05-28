@@ -6,6 +6,6 @@ FROM openjdk:8
 
 EXPOSE 5000
 
-# ADD target/ProcessPension-Microservice.jar ProcessPension-Microservice.jar
+ADD target/ProcessPension-Microservice.jar ProcessPension-Microservice.jar
 
-# ENTRYPOINT ["java","-jar","/ProcessPension-Microservice.jar"]
+ENTRYPOINT ["java","-jar","/ProcessPension-Microservice.jar"]
