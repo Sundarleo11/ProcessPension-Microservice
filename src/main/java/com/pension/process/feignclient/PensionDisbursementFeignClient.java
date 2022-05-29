@@ -12,7 +12,8 @@ import com.pension.process.model.ProcessPensionInput;
 import com.pension.process.model.ProcessPensionResponse;
 
 
-@FeignClient(name = "PensionDisbursement-Microservices",url = "http://localhost:7000/disbursement/api")
+//@FeignClient(name = "PensionDisbursement-Microservices",url = "http://localhost:7000/disbursement/api")
+@FeignClient(name = "PensionDisbursement-Microservices",url = "http://890536-pensiondisbursement-lb-1298273015.us-east-1.elb.amazonaws.com/disbursement/api")
 public interface PensionDisbursementFeignClient {
 	
 	@PostMapping("/disbursePension")
